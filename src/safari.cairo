@@ -39,7 +39,7 @@ mod Safari {
     impl busesImpl of super::busesTrait<ContractState> {
         fn add_bus(ref self:ContractState, registration_no:felt252, route:felt252, bus_capacity:u128,all_seats:u128, bus_status:felt252){
             let key_ = self.bus_count.read() + 1;
-            let new_bus = Buses{registration_no:registration_no, route:route,bus_capacity:bus_capacity, all_seats:all_seats, bus_status:bus_status};
+            let new_bus = Bus{registration_no:registration_no, route:route,bus_capacity:bus_capacity, all_seats:all_seats, bus_status:bus_status};
             self.bus.write(key_, new_bus);
             self.bus_count.write(key_);
         }
