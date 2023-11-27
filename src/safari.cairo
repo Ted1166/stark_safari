@@ -1,8 +1,8 @@
 #[starknet::interface]
 trait busesTrait<TContractState> {
     fn add_bus(ref self:TContractState, registration_no:felt252, route:felt252, bus_capacity:u128,all_seats:u128, bus_status:felt252);
-    fn get_bus(self:@TContractState, key:u128) -> Array<Buses>;
-    fn show_bus(self:@TContractState, key:u128) -> Buses;
+    fn get_bus(self:@TContractState, key:u128) -> Array<Bus>;
+    fn show_bus(self:@TContractState, key:u128) -> Bus;
     fn get_message(self:@TContractState, key:u128) -> Message;
 }
 
@@ -15,13 +15,13 @@ mod Safari {
 
     #[storage]
     struct Storage {
-        bus : LegacyMap::<Buses, u128>,
+        bus : LegacyMap::<Bus, u128>,
         messages : LegacyMap::<Message, u128>,
         bus_count : u128
     }
 
     #[derive(Copy, Drop, Serde, starknet::Store)]
-    struct Buses{
+    struct Bus {
         registration_no : felt252,
         route : felt252,
         bus_capacity : u128,
@@ -44,8 +44,8 @@ mod Safari {
             self.bus_count.write(key_);
         }
 
-        fn get_bus(self:@ContractState, key:u128) -> Array<Buses> {
-            let mut bus = ArrayTrait::<Buses>::new();
+        fn get_bus(self:@ContractState, key:u128) -> Array<Bus> {
+            let mut bus = ArrayTrait::<Bus>::new();
             let bus_no = self.bus_count.read();
             let mut count = 1;
 
@@ -62,7 +62,7 @@ mod Safari {
             bus
         }
 
-        fn show_bus(self:@ContractState, key:u128) -> Buses{
+        fn show_bus(self:@ContractState, key:u128) -> Bus{
             self.bus.read(key)
         }
 
