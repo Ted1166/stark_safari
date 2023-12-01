@@ -1,5 +1,8 @@
+use stark_safari::safari::Safari::{Bus, Message, ContractAddress};
+use core::array::ArrayTrait;
+
 #[starknet::interface]
-trait busesTrait<TContractState> {
+trait safariTrait<TContractState> {
     fn add_bus(ref self:TContractState, registration_no:felt252, route:felt252, bus_capacity:u128,all_seats:u128, bus_status:felt252);
     fn get_bus(self:@TContractState, key:u128) -> Array<Bus>;
     fn show_bus(self:@TContractState, key:u128) -> Bus;
@@ -15,8 +18,8 @@ mod Safari {
 
     #[storage]
     struct Storage {
-        bus : LegacyMap::<Bus, u128>,
-        messages : LegacyMap::<Message, u128>,
+        bus : LegacyMap::<u128, Bus>,
+        messages : LegacyMap::< u128, Message>,
         bus_count : u128
     }
 
@@ -30,13 +33,13 @@ mod Safari {
     }
 
     #[derive(Copy, Drop, Serde, starknet::Store)]
-    struct Message{
+    struct Message {
         recipient : ContractAddress,
         msg : felt252
     }
 
     #[external(v0)]
-    impl busesImpl of super::busesTrait<ContractState> {
+    impl safariImpl of super::safariTrait<ContractState> {
         fn add_bus(ref self:ContractState, registration_no:felt252, route:felt252, bus_capacity:u128,all_seats:u128, bus_status:felt252){
             let key_ = self.bus_count.read() + 1;
             let new_bus = Bus{registration_no:registration_no, route:route,bus_capacity:bus_capacity, all_seats:all_seats, bus_status:bus_status};
@@ -51,8 +54,8 @@ mod Safari {
 
             if bus_no > 0{
                 loop{
-                    let buss = self.bus.read(count);
-                    bus.append(buss);
+                    let buz = self.bus.read(count);
+                    bus.append(buz);
                     count +=1;
                     if(count > bus_no){
                         break;
