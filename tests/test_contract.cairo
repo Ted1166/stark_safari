@@ -13,6 +13,7 @@ fn deploy() -> safariTraitDispatcher {
 }
 
 #[test]
+#[available_gas(20000000)]
 fn test_add_bus() {
     let mut contract = deploy();
     let registration_no = 'KCA 452Z';

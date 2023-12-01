@@ -1,3 +1,4 @@
+
 use stark_safari::safari::Safari::{Bus, Message, ContractAddress};
 use core::array::ArrayTrait;
 

@@ -10,3 +10,28 @@ starknet = "2.3.0"
 
 [[target.starknet-contract]]
 casm = true
+
+[tool.sncast.safaristark]
+account = "safaristark"
+accounts-file = "/home/ted/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-goerli.infura.io/v3/7d48ff9fbf924034a5ecebd836f4ff6f"
+
+[tool.sncast.stark]
+account = "stark"
+accounts-file = "/home/ted/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-mainnet.infura.io/v3/bc68aac3cb0747fbb09971ae6c2947df"
+
+[tool.sncast.starknet]
+account = "starknet"
+accounts-file = "/home/ted/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-mainnet.infura.io/v3/bc68aac3cb0747fbb09971ae6c2947df"
+
+[tool.sncast.ted]
+account = "ted"
+accounts-file = "/home/ted/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-mainnet.infura.io/v3/bc68aac3cb0747fbb09971ae6c2947df"
+
+[tool.sncast.adams]
+account = "adams"
+accounts-file = "/home/ted/.starknet_accounts/starknet_open_zeppelin_accounts.json"
+url = "https://starknet-mainnet.infura.io/v3/bc68aac3cb0747fbb09971ae6c2947df"
